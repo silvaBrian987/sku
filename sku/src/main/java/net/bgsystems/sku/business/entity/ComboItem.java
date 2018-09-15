@@ -2,6 +2,7 @@ package net.bgsystems.sku.business.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Table
 public class ComboItem implements Serializable {
 	@Id
+	@Basic(optional = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne

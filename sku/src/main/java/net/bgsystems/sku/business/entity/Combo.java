@@ -3,9 +3,11 @@ package net.bgsystems.sku.business.entity;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -17,9 +19,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Table
 public class Combo implements Serializable {
 	@Id
-    @GenericGenerator(name = "sku", strategy = "net.bgsystems.sku.business.entity.generator.SkuGenerator")
-    @GeneratedValue(generator = "sku")  
-    @Column(name="sku")
+	@Basic(optional = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@GenericGenerator(name = "sku", strategy = "net.bgsystems.sku.business.entity.generator.SkuGenerator")
+	@GeneratedValue(generator = "sku")
+	@Column(name = "sku")
 	private String sku;
 	@Column
 	private String nombre;
@@ -27,6 +32,14 @@ public class Combo implements Serializable {
 	private ComboItem itemBase;
 	@ManyToMany
 	private Set<ComboItem> items;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getSku() {
 		return sku;
