@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Properties>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %C:%L - %msg%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+		<File name="File" fileName="app.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="net.bgsystems" level="DEBUG" />
+		<!-- <Logger name="org.springframework" level="TRACE" /> -->
+		<!-- <Logger name="org.springframework.web.socket" level="DEBUG" /> -->
+
+
+		<!-- level INFO needed to log SOAP messages -->
+		<!-- <Logger name="org.apache.cxf.services" level="INFO" /> -->
+
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="File" /> -->
+		</Root>
+	</Loggers>
+</Configuration>

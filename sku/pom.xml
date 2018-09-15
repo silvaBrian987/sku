@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.bgsystems.maven</groupId>
+		<artifactId>maven-parent-webapp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>net.bgsystems</groupId>
+	<artifactId>sku</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
+
+	<profiles>
+		<profile>
+			<id>with-local-resources</id>
+			<build>
+				<!-- PARA DESARROLLO CUANDO NO SE PUEDE ACCEDER AL JAVAAPPSCONFIG -->
+				<resources>
+					<resource>
+						<directory>src/local/resources</directory>
+						<includes>
+							<include>**/*.*</include>
+						</includes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<!-- <warSourceExcludes> -->
+					<!-- WEB-INF/lib/xml-apis-*.jar, -->
+					<!-- WEB-INF/lib/mssql-jdbc-*.jar -->
+					<!-- </warSourceExcludes> -->
+				</configuration>
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>remove-resources</id> -->
+				<!-- <phase>package</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>war</goal> -->
+				<!-- </goals> -->
+				<!-- <inherited>false</inherited> -->
+				<!-- <configuration> -->
+				<!-- <packagingExcludes> -->
+				<!-- WEB-INF/lib/xml-apis-*.jar, -->
+				<!-- WEB-INF/lib/mssql-jdbc-*.jar, -->
+				<!-- .dm/, -->
+				<!-- */.dm/ -->
+				<!-- </packagingExcludes> -->
+				<!-- </configuration> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.derby</groupId> -->
+		<!-- <artifactId>derby</artifactId> -->
+		<!-- <version>10.14.1.0</version> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- LOGGING FRAMEWORK -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+		<!-- CDI FRAMEWORK -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<!-- JSON MANAGER -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- ORM FRAMEWORK -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.bgsystems</groupId>
+			<artifactId>JavaCustomUtils</artifactId>
+		</dependency>
+	</dependencies>
+</project>
