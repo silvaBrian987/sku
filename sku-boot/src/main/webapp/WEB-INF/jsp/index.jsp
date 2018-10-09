@@ -11,7 +11,7 @@
 	content="IE=edge" />
 <!--<![endif]-->
 <meta charset="utf-8">
-<base href="${pageContext.request.contextPath}/">
+<%-- <base href="${pageContext.request.contextPath}/"> --%>
 
 <link
 	rel="icon"

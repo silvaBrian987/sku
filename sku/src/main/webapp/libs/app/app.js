@@ -1,10 +1,10 @@
 "use strict";
 
-var angularDependencies = [ 'base64', 'ngSanitize', 'ngMessages', 'ngMaterial' ];
+var angularDependencies = [ 'base64', 'ngSanitize', 'ngMessages', 'ngMaterial', 'ng-pros.directive.autocomplete' ];
 var uiGridDependencies = [ 'ui.grid', 'ui.grid.edit', 'ui.grid.exporter', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.cellNav', 'ui.grid.resizeColumns', 'ui.bootstrap', 'ui.select' ];
 var thirdPartyDependencies = [ 'msgbox' ];
 var basicAppDependencies = [ 'utilsModule', 'validationModule', 'appModule', 'datosUsuarioModule', 'menuModule' ];
-var businessAppDependencies = [ 'echoModule', 'productoModule' ];
+var businessAppDependencies = [ 'echoModule', 'productoModule', 'comboModule' ];
 var dependencies = [];
 
 (function() {
@@ -53,8 +53,11 @@ var dependencies = [];
 		});
 	});
 
-	app.run(function($rootScope, $q, $interval, $http, $base64, $msgbox, myConfig, appService) {
+	app.run(function($rootScope, $q, $interval, $http, $base64, $msgbox, myConfig, appService, i18nService) {
 		$rootScope.titulo = "SKU";
+		
+		// Setea el idioma de ui-grid
+		i18nService.setCurrentLang('es');
 
 		// Mejora en la transformacion de la respuesta http
 		$http.defaults.transformResponse.unshift(FuncionesGenerales.customTransformResponse);
